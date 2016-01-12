@@ -1,0 +1,25 @@
+{
+  "name": "Modeler",
+  "version": "0.0.0",
+  "authors": [
+    "Ryeland Gongora <rsgmon@gmail.com>"
+  ],
+  "description": "\"Modeler\"",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-resource": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.0",
+    "toastr": "~2.1.2"
+  }
+}
