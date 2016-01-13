@@ -1,0 +1,52 @@
+//
+   Created by Rye on 1/13/2016.
+p Welcome to Robust's portfolio optimizer application.
+p This application allows you to create, update, and remove portfolio securities.
+
+button.btn.btn-primary(ng-click="portUpdate()") Submit
+
+div.col-md-offset-05(ng-repeat="assetType in assetTypes")
+    p {{assetType}}
+    div.col-md-offset-05(ng-repeat="attrib in regions" ng-if="attrib.assetType == assetType")
+        p {{attrib.region}}
+        div.col-md-offset-05(ng-repeat="attribAC in assetClasses"
+        ng-if="attribAC.region == attrib.region && attribAC.assetType == assetType")
+            p {{attribAC.assetClass}}
+            .form-horizontal
+                div.form-group.col-md-offset-05
+                    .col-sm-1
+                        label Symbol
+                    .col-sm-1
+                        label Name
+                    .col-sm-2
+                        label Change
+                    .col-sm-1
+                        label Benchmark Weight
+                    .col-sm-1
+                        label Target Total Weight
+                    .col-sm-1
+                        label Target Active Weight
+                    .col-sm-1
+                        label Duration
+                    .col-sm-1
+                        label Weighted Duration
+                    .col-sm-1
+                        label Yield
+                    .col-sm-1
+                        label Weighted Yield
+
+            div(ng-repeat="pos in positions[0]['positions']"
+            ng-if="pos.region == attrib.region && pos.assetType == assetType && pos.assetClass == attribAC.assetClass")
+                .form-horizontal
+                    div.form-group
+                        .col-sm-1 {{pos.symbol}}
+                        .col-sm-1 {{pos.name}}
+                        .col-sm-2
+                            input.form-control(step=0.0001 type="number" placeholder="0", ng-init="pos.change=0", ng-model="pos.change")
+                        .col-sm-1 {{pos.benchmarkWeight*100 | number:2}} %
+                        .col-sm-1 {{pos.targetWeight*100 + pos.change*100 | number:2}} %
+                        .col-sm-1 {{pos.targetWeight*100 + pos.change*100 - pos.benchmarkWeight*100 | number:2}} %
+                        .col-sm-1 {{pos.duration}}
+                        .col-sm-1 {{pos.duration*pos.targetWeight + pos.duration*pos.change | number:4}}
+                        .col-sm-1 {{pos.yield |number:2}}
+                        .col-sm-1 {{pos.yield*pos.targetWeight + pos.yield*pos.change | number:4}}

@@ -6,7 +6,7 @@ var rootPath = path.normalize(__dirname + '/../../');
 
 module.exports = {
     development: {
-        db: 'mongodb://localhost/test',
+        db: 'mongodb://127.0.0.1/FirstMean',
         rootPath: rootPath,
         port: process.env.PORT || 3030
     },

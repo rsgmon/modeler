@@ -14,6 +14,9 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/signup', {templateUrl: 'partials/account/signup',
             controller: 'fmSignUpCtrl'})
+        .when('/portfolios', {templateUrl: 'partials/tools/tooloptimize',
+            controller: 'fmOptimizeCtrl'
+        });
 
 });
 
