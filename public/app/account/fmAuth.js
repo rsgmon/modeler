@@ -14,6 +14,14 @@ app.factory('fmAuth', function ($http, fmIdentity, $q) {
                 }
             });
             return dfd.promise;
+        },
+        logoutUser: function () {
+            var dfd = $q.defer();
+            $http.post('/logout', { logout: true }).then(function () {
+                fmIdentity.currentUser = undefined;
+                dfd.resolve();
+            });
+            return dfd.promise;
         }
     }
 })
