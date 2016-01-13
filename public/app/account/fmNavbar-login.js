@@ -1,9 +1,17 @@
 /**
  * Created by Rye on 1/12/2016.
  */
-app.controller('fmLoginCtrl', function($scope)
+app.controller('fmLoginCtrl', function($scope, $http)
 {
-    $scope.signin = "I'm not done"
+    $scope.signin = function(username, password) {
+        $http.post('/login', {username:username, password:password}).then(function (response) {
+            if(response.data.success) {
+                console.log('logged in');
+            } else {
+                console.log('failed to log in');
+            }
+        })
+    }
 });
 //include this later
 // ,$http, fmNotifier, fmIdentity, fmAuth, $location) {
