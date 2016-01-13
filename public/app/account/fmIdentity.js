@@ -1,10 +1,11 @@
 /**
  * Created by Rye on 1/12/2016.
  */
-app.factory('fmIdentity', function($window){
+app.factory('fmIdentity', function($window, fmUser){
     var currentUser;
     if(!!$window.bootstrappedUserObject) {
-       currentUser = $window.bootstrappedUserObject;
+       currentUser = new fmUser();
+       angular.extend(currentUser, $window.bootstrappedUserObject);
     }
     return {
         currentUser: currentUser,
