@@ -1,20 +1,21 @@
 /**
  * Created by Rye on 1/12/2016.
  */
-app.controller('fmLoginCtrl', function($scope, $http)
+app.controller('fmLoginCtrl', function($scope, $http, fmNotifier, fmIdentity, fmAuth)
 {
+    $scope.identity = fmIdentity;
     $scope.signin = function(username, password) {
-        $http.post('/login', {username:username, password:password}).then(function (response) {
-            if(response.data.success) {
-                console.log('logged in');
+        fmAuth.authenticateUser(username, password).then(function(success) {
+            if(success) {
+                fmNotifier.notify('Sucess');
             } else {
-                console.log('failed to log in');
+                fmNotifier.notify('FAIL');
             }
         })
     }
 });
 //include this later
-// ,$http, fmNotifier, fmIdentity, fmAuth, $location) {
+// ,$http fmAuth, $location) {
 //    $scope.identity = fmIdentity;
 //
 //    $scope.signin = function(username, password)  {
