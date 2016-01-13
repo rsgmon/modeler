@@ -24,7 +24,12 @@ app.use(stylus.middleware(
 ));
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect('mongodb://localhost/test')
+if (env=== 'development') {
+    mongoose.connect('mongodb://localhost/test')
+} else {
+    mongoose.connect('mongodb://jdoe:weights@ds043615.mongolab.com:43615/optimizer')}
+
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error...'));
 db.once('open', function callback() {
@@ -45,6 +50,6 @@ app.get('*', function(req, res){
     res.render('index', {mongoMessage: mongoMessage});
 })
 
-var port = 3030;
+var port = process.env.PORT || 3030;
 app.listen(port);
 console.log('Listening on' + port + '...');
