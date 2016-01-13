@@ -15,7 +15,7 @@ app.controller('fmLoginCtrl', function($scope, $http, fmNotifier, fmIdentity, fm
     }
 
     $scope.signout = function () {
-        
+
         fmAuth.logoutUser().then(function () {
             $scope.username = "";
             $scope.password = "";
