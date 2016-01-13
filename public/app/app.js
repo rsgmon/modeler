@@ -1,20 +1,20 @@
 var app = angular.module('app',['ngRoute', 'ngResource']);
 
 app.config(function ($routeProvider, $locationProvider) {
+    var routeRoleChecks = {
+        admin: {auth: function(fmAuth) {
+            return fmAuth.authorizeCurrentUserForRoute('admin')
+        }}
+    }
     $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', { templateUrl: '/partials/main/fmMain', controller: 'fmMainCtrl' })
         .when('/admin/users', { templateUrl: '/partials/admin/user-list',
-            controller: 'fmUserListCtrl',
-        resolve: {
-            auth: function(fmIdentity, $q) {
-                if(fmIdentity.currentUser && fmIdentity.currentUser.roles.indexOf('admin') > -1) {
-                    return true;
-                } else {
-                    return $q.reject('not authorized');
-                }
-            }
-        }})
+            controller: 'fmUserListCtrl', resolve: routeRoleChecks.admin
+        })
+        .when('/signup', {templateUrl: 'partials/account/signup',
+            controller: 'fmSignUpCtrl'})
+
 });
 
 app.run(function($rootScope, $location) {

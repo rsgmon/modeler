@@ -17,13 +17,31 @@ app.factory('fmAuth', function ($http, fmIdentity, $q, fmUser) {
             });
             return dfd.promise;
         },
-        logoutUser: function () {
+        createUser: function (newUserData) {
+            var newUser = new fmUser(newUserData);
+            var dfd = $q.defer();
+            newUser.$save().then(function(){
+            fmIdentity.currentUser = newUser;
+            dfd.resolve();
+            }, function(response) {
+                dfd.reject(response.data.reason)
+        });
+            return dfd.promise;
+        },
+            logoutUser: function () {
             var dfd = $q.defer();
             $http.post('/logout', { logout: true }).then(function () {
                 fmIdentity.currentUser = undefined;
                 dfd.resolve();
             });
             return dfd.promise;
+        },
+        authorizeCurrentUserForRoute: function(role) {
+            if(fmIdentity.isAuthorized(role)) {
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
         }
     }
 })
