@@ -1,0 +1,10 @@
+//
+   Created by Rye on 1/12/2016.
+.panel.panel-primary
+    .panel-heading.text-center Go Optimize!
+    .panel-body.text-center
+        .row(ng-repeat="position in sample_portfolio")
+            .col-md-6.text-left
+                p {{position.symbol}}
+            .col-md-6
+                p {{position.weight}}
