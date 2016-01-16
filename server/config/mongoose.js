@@ -2,7 +2,7 @@
  * Created by Rye on 1/12/2016.
  */
 var mongoose = require('mongoose'),
-    userModel = require('../models/User'),
+    userModel = require('../models/user.js'),
     portfolioModel = require('../models/portfolio.js');
 
 module.exports = function(config) {
