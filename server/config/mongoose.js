@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
     portfolioModel = require('../models/portfolio.js');
 
 module.exports = function(config) {
+    console.log(config.db)
     mongoose.connect(config.db);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error...'));
