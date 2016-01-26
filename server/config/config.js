@@ -13,6 +13,6 @@ module.exports = {
     production: {
         rootPath: rootPath,
         db: 'mongodb://jdoe:weights@ds043615.mongolab.com:43615/optimizer',
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 80
     },
 }

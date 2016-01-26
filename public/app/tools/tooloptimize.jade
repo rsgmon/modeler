@@ -4,16 +4,15 @@ p Welcome to Robust's portfolio optimizer application.
 p This application allows you to create, update, and remove portfolio securities.
 
 button.btn.btn-primary(ng-click="portUpdate()") Submit
-
 div(ng-repeat="assetType in assetTypes")
-    p {{assetType}}
-    div.col-md-offset-1(ng-repeat="attrib in regions" ng-if="attrib.assetType == assetType")
-        p {{attrib.region}}
-        div.col-md-offset-01(ng-repeat="attribAC in assetClasses"
+    h4 {{assetType}}
+    div.col-md-offset-005(ng-repeat="attrib in regions" ng-if="attrib.assetType == assetType")
+        h4 {{attrib.region}}
+        div.col-md-offset-005(ng-repeat="attribAC in assetClasses"
         ng-if="attribAC.region == attrib.region && attribAC.assetType == assetType")
-            p {{attribAC.assetClass}}
+            h5 {{attribAC.assetClass}}
             .form-horizontal
-                div.form-group.col-md-offset-1
+                div.form-group.col-md-offset-005
                     .col-sm-1
                         label Symbol
                     .col-sm-1
